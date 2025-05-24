@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.dslist.dto.GameListDTO;
+import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.services.GameListService;
+import com.devsuperior.dslist.services.GameService;
 
 @RestController 
 
@@ -18,15 +21,10 @@ public class GameListController {
 	@Autowired 
 	private GameListService gameListService;
 	
-//	//criando o metodo de buscar games por id 
-//	@GetMapping("{id}")
-//	public GameListDTO findById(@PathVariable  Long id){
-//		GameListDTO result = gameListService.findById(id);
-//		return result;
-//	}
+	@Autowired
+	private GameService gameService;
 	
 
-	
 	//criando o metodo de buscar lista de games 
 	@GetMapping
 	public List<GameListDTO> findAll(){
@@ -34,6 +32,14 @@ public class GameListController {
 		return result;
 	}
 	
+	
+	//operacao de requisiçao de listas para recuperar dados da projetcion.
+	//criando o metodo de buscar lista de games 
+	@GetMapping(value = "/{listId}/games")
+	public List<GameMinDTO> findByList(@PathVariable  Long listId){
+		List<GameMinDTO> result = gameService.findByList(listId);
+		return result;
+	}
 	
 	
 	

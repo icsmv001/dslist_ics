@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameRepository;
 
 @Service
@@ -34,6 +35,29 @@ public class GameService {
 		return  result.stream().map(x -> new GameMinDTO(x)).toList();
 		
 	}
+	
+	
+	//metodo para recuperar os dados da native query e recuperando na interface
+	@Transactional(readOnly=true)
+	public List<GameMinDTO> findByList(Long listId) {
+		List<GameMinProjection> result = gameRepository.searchByList(listId);
+		// filtrando os dados apenas para o conteudo do DTO de campos minimos
+		return  result.stream().map(x -> new GameMinDTO(x)).toList();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -3,8 +3,7 @@ package com.devsuperior.dslist.dto;
 import java.util.Objects;
 
 import com.devsuperior.dslist.entities.Game;
-
-import jakarta.persistence.Column;
+import com.devsuperior.dslist.projections.GameMinProjection;
 
 public class GameMinDTO {
 
@@ -27,6 +26,25 @@ public GameMinDTO(Game entity) {
 	imgUrl = entity.getImgUrl();
 	shortDescription = entity.getShortDescription();
 }
+
+// construtor para recupear o projetcion
+
+public GameMinDTO(GameMinProjection projection) {
+	id = projection.getId();
+	title = projection.getTitle();
+	year = projection.getYear();
+	imgUrl = projection.getImgUrl();
+	shortDescription = projection.getShortDescription();
+}
+
+
+
+
+
+
+
+
+
 
 
 
