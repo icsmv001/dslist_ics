@@ -37,6 +37,7 @@ public class GameService {
 	}
 	
 	
+	
 	//metodo para recuperar os dados da native query e recuperando na interface
 	@Transactional(readOnly=true)
 	public List<GameMinDTO> findByList(Long listId) {
